@@ -66,12 +66,27 @@
                 right: 0;
             }
             <?php if ($_GET['name'] == 'admin') echo 'div#vk_comments{top: 50px;}'; ?>
-            .video-block {position: relative;padding-bottom: 56.25%;height: 0;overflow: hidden;}
+            .video-block {position: relative;/*padding-bottom: 56.25%;height: 0;*/overflow: hidden;}
+            @media screen and (max-device-width: 320px) {
+                .video-block {
+                    height: 180px !important;
+                }
+            }
+            @media screen and (max-device-width: 360px) {
+                .video-block {
+                    height: 200px;
+                }
+            }
+            @media screen and (min-device-width: 721px) {
+                .video-block {
+                    height: 648px;
+                }
+            }
             .video-block iframe {position: absolute;top: 0;left: 0;width: 100%;height: 100%;}
-/*            .header {background: #fafbfc;z-index: 99999;position: relative;box-shadow: 0px 3px 1px #e1e4eb;padding: 0px 50px;height: 50px;}
-            .header img {height: 100%;}
-            .header a {text-align: center;float: right;padding: 5px 10px;border: 1px solid #ffffff;border-radius: 10px;text-transform: uppercase;font-weight: 300;margin-top: 0px;color: #fff;text-decoration: none;background: #cb4e4e;}
-            .header span {font-family: ProximaNovaBold;font-size: 30px;vertical-align: -webkit-baseline-middle;padding-left: 15px;text-shadow: 1px 1px 0px #fff;color: #e1e7ed;text-transform: uppercase;}*/
+            /*            .header {background: #fafbfc;z-index: 99999;position: relative;box-shadow: 0px 3px 1px #e1e4eb;padding: 0px 50px;height: 50px;}
+                        .header img {height: 100%;}
+                        .header a {text-align: center;float: right;padding: 5px 10px;border: 1px solid #ffffff;border-radius: 10px;text-transform: uppercase;font-weight: 300;margin-top: 0px;color: #fff;text-decoration: none;background: #cb4e4e;}
+                        .header span {font-family: ProximaNovaBold;font-size: 30px;vertical-align: -webkit-baseline-middle;padding-left: 15px;text-shadow: 1px 1px 0px #fff;color: #e1e7ed;text-transform: uppercase;}*/
             .head {height: 25px;}
 
             .link{text-align: center;width: 100%;display: block;}
@@ -218,7 +233,7 @@
                         </div>
                         <div class="video-container">
                             <div class="glass"></div>
-                            <video id="video" playsinline controls="controls"></video>
+                            <video id="video" playsinline controls="false"></video>
                             <div class="control-panel">
                                 <div class="additory-module">
                                     <div class="live-module">
@@ -234,12 +249,12 @@
                                 <div class="additory-module">
                                     <span class="volume-button active">
                                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 54 54" style="enable-background:new 0 0 54 54;" xml:space="preserve" width="30px" height="30px">
-                                            <g>
-                                                <path class="inactive-item" d="M46.414,26l7.293-7.293c0.391-0.391,0.391-1.023,0-1.414s-1.023-0.391-1.414,0L45,24.586l-7.293-7.293   c-0.391-0.391-1.023-0.391-1.414,0s-0.391,1.023,0,1.414L43.586,26l-7.293,7.293c-0.391,0.391-0.391,1.023,0,1.414   C36.488,34.902,36.744,35,37,35s0.512-0.098,0.707-0.293L45,27.414l7.293,7.293C52.488,34.902,52.744,35,53,35   s0.512-0.098,0.707-0.293c0.391-0.391,0.391-1.023,0-1.414L46.414,26z" fill="rgb(255,255,255)"/>
-                                                <path d="M28.404,4.4c-0.975-0.552-2.131-0.534-3.09,0.044c-0.046,0.027-0.09,0.059-0.13,0.093L11.634,16H1c-0.553,0-1,0.447-1,1v19   c0,0.266,0.105,0.52,0.293,0.707S0.734,37,1,37l10.61-0.005l13.543,12.44c0.05,0.046,0.104,0.086,0.161,0.12   c0.492,0.297,1.037,0.446,1.582,0.446c0.517-0.001,1.033-0.134,1.508-0.402C29.403,49.035,30,48.005,30,46.844V7.156   C30,5.995,29.403,4.965,28.404,4.4z M28,46.844c0,0.431-0.217,0.81-0.579,1.015c-0.155,0.087-0.548,0.255-1,0.026L13,35.556V31   c0-0.553-0.447-1-1-1s-1,0.447-1,1v3.996L2,35V18h9v4c0,0.553,0.447,1,1,1s1-0.447,1-1v-4.536l13.405-11.34   c0.46-0.242,0.86-0.07,1.016,0.018C27.783,6.347,28,6.725,28,7.156V46.844z" fill="rgb(255,255,255)"/>
-                                                <path class="active-item" d="M38.797,7.066c-0.523-0.177-1.091,0.103-1.269,0.626c-0.177,0.522,0.103,1.091,0.626,1.269   c7.101,2.411,11.872,9.063,11.872,16.553c0,7.483-4.762,14.136-11.849,16.554c-0.522,0.178-0.802,0.746-0.623,1.27   c0.142,0.415,0.53,0.677,0.946,0.677c0.107,0,0.216-0.017,0.323-0.054c7.896-2.693,13.202-10.106,13.202-18.446   C52.026,17.166,46.71,9.753,38.797,7.066z" fill="rgb(255,255,255)"/>
-                                                <path class="active-item" d="M43.026,25.513c0-5.972-4.009-11.302-9.749-12.962c-0.533-0.151-1.084,0.152-1.238,0.684   c-0.153,0.53,0.152,1.085,0.684,1.238c4.889,1.413,8.304,5.953,8.304,11.04s-3.415,9.627-8.304,11.04   c-0.531,0.153-0.837,0.708-0.684,1.238c0.127,0.438,0.526,0.723,0.961,0.723c0.092,0,0.185-0.013,0.277-0.039   C39.018,36.815,43.026,31.485,43.026,25.513z" fill="rgb(255,255,255)"/>
-                                            </g>
+                                        <g>
+                                        <path class="inactive-item" d="M46.414,26l7.293-7.293c0.391-0.391,0.391-1.023,0-1.414s-1.023-0.391-1.414,0L45,24.586l-7.293-7.293   c-0.391-0.391-1.023-0.391-1.414,0s-0.391,1.023,0,1.414L43.586,26l-7.293,7.293c-0.391,0.391-0.391,1.023,0,1.414   C36.488,34.902,36.744,35,37,35s0.512-0.098,0.707-0.293L45,27.414l7.293,7.293C52.488,34.902,52.744,35,53,35   s0.512-0.098,0.707-0.293c0.391-0.391,0.391-1.023,0-1.414L46.414,26z" fill="rgb(255,255,255)"/>
+                                        <path d="M28.404,4.4c-0.975-0.552-2.131-0.534-3.09,0.044c-0.046,0.027-0.09,0.059-0.13,0.093L11.634,16H1c-0.553,0-1,0.447-1,1v19   c0,0.266,0.105,0.52,0.293,0.707S0.734,37,1,37l10.61-0.005l13.543,12.44c0.05,0.046,0.104,0.086,0.161,0.12   c0.492,0.297,1.037,0.446,1.582,0.446c0.517-0.001,1.033-0.134,1.508-0.402C29.403,49.035,30,48.005,30,46.844V7.156   C30,5.995,29.403,4.965,28.404,4.4z M28,46.844c0,0.431-0.217,0.81-0.579,1.015c-0.155,0.087-0.548,0.255-1,0.026L13,35.556V31   c0-0.553-0.447-1-1-1s-1,0.447-1,1v3.996L2,35V18h9v4c0,0.553,0.447,1,1,1s1-0.447,1-1v-4.536l13.405-11.34   c0.46-0.242,0.86-0.07,1.016,0.018C27.783,6.347,28,6.725,28,7.156V46.844z" fill="rgb(255,255,255)"/>
+                                        <path class="active-item" d="M38.797,7.066c-0.523-0.177-1.091,0.103-1.269,0.626c-0.177,0.522,0.103,1.091,0.626,1.269   c7.101,2.411,11.872,9.063,11.872,16.553c0,7.483-4.762,14.136-11.849,16.554c-0.522,0.178-0.802,0.746-0.623,1.27   c0.142,0.415,0.53,0.677,0.946,0.677c0.107,0,0.216-0.017,0.323-0.054c7.896-2.693,13.202-10.106,13.202-18.446   C52.026,17.166,46.71,9.753,38.797,7.066z" fill="rgb(255,255,255)"/>
+                                        <path class="active-item" d="M43.026,25.513c0-5.972-4.009-11.302-9.749-12.962c-0.533-0.151-1.084,0.152-1.238,0.684   c-0.153,0.53,0.152,1.085,0.684,1.238c4.889,1.413,8.304,5.953,8.304,11.04s-3.415,9.627-8.304,11.04   c-0.531,0.153-0.837,0.708-0.684,1.238c0.127,0.438,0.526,0.723,0.961,0.723c0.092,0,0.185-0.013,0.277-0.039   C39.018,36.815,43.026,31.485,43.026,25.513z" fill="rgb(255,255,255)"/>
+                                        </g>
                                         </svg>
                                     </span>
                                 </div>
@@ -254,19 +269,17 @@
                     <div id="mc-container"></div>
                 </div>
                 <script type="text/javascript">
-                cackle_widget = window.cackle_widget || [];
-                cackle_widget.push({widget: 'Comment', id: 52987, stream: true, guestFirst: false, guestHideEmail: false, channel: 'http://air.yaroslav-samoylov.com/c/', callback: {
-                    create: [function() {
-                        ajaxHandler.commentsCustomization();
-                    }]
-                }});
-                (function() {
-                    var mc = document.createElement('script');
-                    mc.type = 'text/javascript';
-                    mc.async = true;
-                    mc.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://cackle.me/widget.js';
-                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
-                })();
+                    cackle_widget = window.cackle_widget || [];
+                    cackle_widget.push({widget: 'Comment', id: 52987, stream: true, guestFirst: false, guestHideEmail: false, channel: 'http://air.yaroslav-samoylov.com/c/', callback: {
+                        }});
+                    (function () {
+                        var mc = document.createElement('script');
+                        mc.type = 'text/javascript';
+                        mc.async = true;
+                        mc.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://cackle.me/widget.js';
+                        var s = document.getElementsByTagName('script')[0];
+                        s.parentNode.insertBefore(mc, s.nextSibling);
+                    })();
                 </script>
             </div>
         </div>
@@ -275,54 +288,55 @@
         <script src="js/main.js"></script>
         <script src="js/basic-functions.js"></script>
         <!--Компоненты отвечают за работу видео-плеера;-->
-        <script src="js/video-player.js?v=1.0.2"></script>
+<!--        <script src="js/video-player.js?v=1.0.4"></script>
         <script src="js/timer.js"></script>
         <script src="js/device-detector.js"></script>
         <script src="js/ajax-sender.js?v=1.0.1"></script>
         <script src="js/es6-promise.min.js"></script>
-        <script src="js/es6-promise.auto.min.js"></script>
+        <script src="js/es6-promise.auto.min.js"></script>-->
         <!--Компоненты отвечают за работу авто-комментариев;-->
-        <script src="js/comments-handler.js"></script>
-        <script src="js/template.js"></script>
+<!--        <script src="js/comments-handler.js?v=1.0.1"></script>
+        <script src="js/template.js"></script>-->
         <!--Компоненты отвечают за работу аналитики-->
-        <script src="js/time-calculator.js"></script>
+<!--        <script src="js/time-calculator.js"></script>
         <script src="js/cookie-functions.js"></script>
-        <script src="js/contants.js"></script>
+        <script src="js/contants.js"></script>-->
+        <script src="js/all-m.js"></script>
         <script>
-            window.onload = function() {
-                var data = constants.getInstance();
-                var player = new VideoPlayer();
-                player.addCallback(function() {
-                    var handler = new TimeCalculator();
-                    handler.CookieTitles(data);
-                    handler.initialize();
-                });
+                    window.onload = function () {
+                        var data = constants.getInstance();
+                        var player = new VideoPlayer();
+                        player.addCallback(function () {
+                            var handler = new TimeCalculator();
+                            handler.CookieTitles(data);
+                            handler.initialize();
+                        });
 //                player.addCallback(function() {
-                    //Компоненты отвечают за работу авто-комментариев;
+                        //Компоненты отвечают за работу авто-комментариев;
 //                    ajaxHandler.initilize();
 //                    ajaxHandler.Template(template);
 //                    ajaxHandler.commentsCustomization();
 //                    ajaxHandler.start();
 //                }); 
-                var timer = new Timer();
-                var detector = new DeviceDetector();
-                var sender = new AjaxSender();
-                sender.Player(player);
-                sender.Timer(timer);
-                sender.Detector(detector);
-                sender.addCallback(function() {
-                    var commentsHandler = new CommentsHandler();
-                    commentsHandler.initialize();
-                    commentsHandler.Template(template);
-                    commentsHandler.addCallback(function() {
-                        player.Data(commentsHandler.Data());
-                        player.Handler(commentsHandler);
-                        player.scheduleStart();
-                    });
-                    commentsHandler.sendRequest();
-                });
-                sender.makeRequest();
-            };
+                        var timer = new Timer();
+                        var detector = new DeviceDetector();
+                        var sender = new AjaxSender();
+                        sender.Player(player);
+                        sender.Timer(timer);
+                        sender.Detector(detector);
+                        sender.addCallback(function () {
+                            var commentsHandler = new CommentsHandler();
+                            commentsHandler.initialize();
+                            commentsHandler.Template(template);
+                            commentsHandler.addCallback(function () {
+                                player.Data(commentsHandler.Data());
+                                player.Handler(commentsHandler);
+                                player.scheduleStart();
+                            });
+                            commentsHandler.sendRequest();
+                        });
+                        sender.makeRequest();
+                    };
         </script>
     </body>
 </html>

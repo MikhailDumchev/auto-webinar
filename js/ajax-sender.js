@@ -42,8 +42,8 @@ function AjaxSender() {
                     timer.CurrentServerTime(currentServerTime);
                     timer.StartingTime(startingTime);
                     timer.createTimer(document.getElementsByClassName("timer-background")[0]);
-                    player.VideoSource("http://air.yaroslav-samoylov.com/video/1.mp4");
-                    player.MobileVideoSource("http://air.yaroslav-samoylov.com/live/video/1.mp4");
+                    player.VideoSource("http://air.yaroslav-samoylov.com/live/video/1_desc.mp4");
+                    player.MobileVideoSource("http://air.yaroslav-samoylov.com/live/video/1_mob.mp4");
                     player.CalculatedDuration(1000000);
                     player.Detector(detector);
                     //Вызов запланированных callback;

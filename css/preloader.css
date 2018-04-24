@@ -23,7 +23,7 @@
     border-color: rgb(255, 255, 255) transparent transparent;
     border-style: double;
     animation: spin 1s infinite;
-    z-index: 15;
+    z-index: 25;
 }
 #preloader:before {
     position: absolute;

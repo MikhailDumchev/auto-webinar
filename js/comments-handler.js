@@ -35,7 +35,7 @@ function CommentsHandler() {
     };
     this.sendRequest = function() {
         var XHR = new XMLHttpRequest();
-        var handlerAddress = "data.json?v=1.0.2";
+        var handlerAddress = "data.json?v=1.0.3";
         XHR.onreadystatechange = function() {
             if (XHR.readyState === 4) {
                 if (XHR.status === 200) {

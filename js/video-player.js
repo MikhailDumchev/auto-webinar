@@ -79,6 +79,8 @@ function VideoPlayer() {
     var changeFlag = 0;
     var currentTiming = 0;
     var timeout = 0;
+    var interval = 0;
+    var internalCounter = 0;
     /**
      * Метод используется для запланированного старта видео-трансляции;
      */
@@ -200,26 +202,40 @@ function VideoPlayer() {
             target.removeEventListener("progress", progressHandler, true);
         }
     };
+    var manualStart = function() {
+        interval = window.setInterval(function() {
+            internalCounter += 0.09;
+            target.currentTime = internalCounter;
+        }, 100);
+    };
     var checkPromise = function() {
         "use strict";
         var promise = new Object();
         if (target.currentTime < target.duration) {
-            promise = target.play();
-            if (promise !== undefined) {
-                //Если промис сработал с ошибкой;
-                promise.catch(function(error) {
+            try {
+                promise = target.play();
+                if (promise !== undefined) {
+                    //Если промис сработал с ошибкой;
+                    promise.catch(function(error) {
+                        var internalPromise = new Object();
+                        internalPromise = target.play();
+                        target.muted = true;
+                        if (internalPromise === undefined) {
+                            manualStart();
+                        }
+                        deactivateVolumeButtons();
+                        if (detector.detectMobileDevice()) {
+                            appendModalWindow();
+                        }
+                    });
+                } else {
                     target.muted = true;
-                    target.play();
                     deactivateVolumeButtons();
-                    if (detector.detectMobileDevice()) {
-                        appendModalWindow();
-                    }
-                });
-            } else {
-                target.muted = true;
-                deactivateVolumeButtons();
-                appendModalWindow({"message": "Нажмите, чтобы начать просмотр", "class": "youtube"});
-                modalWindow.addEventListener("click", startVideo, true);
+                    internalDeletion();
+                    appendModalWindow({"message": "Нажмите, чтобы начать просмотр", "class": "youtube"});
+                    modalWindow.addEventListener("click", startVideo, true);
+                }
+            } catch (error) {
             }
             deactivateHandlers();
             //Вызов запланированных callback;
@@ -279,24 +295,28 @@ function VideoPlayer() {
          * установка тайминга в нужную позицию после его изменения методом setCurrentTiming;
          **/
         if (changeFlag) {
-            var additoryVariable = selectElementByClassName(initialBackgroundClassName);
-            if (additoryVariable.status) addClassName(additoryVariable.element, "inactive");
-            target.removeEventListener("timeupdate", deleteInitialElements, true);
-            deletePreloader();
-            //Видео-запись начала проигрываться;
-            if (!isPlaying) isPlaying = true;
-            //Вызов запланированных callback;
-            if (callbacks.length) {
-                for (var counter = 0; counter < callbacks.length; counter++) {
-                    callbacks[counter]();
-                }
-            }
+            internalDeletion();
         }
         changeFlag++;
+    };
+    var internalDeletion = function() {
+        var additoryVariable = selectElementByClassName(initialBackgroundClassName);
+        if (additoryVariable.status) addClassName(additoryVariable.element, "inactive");
+        target.removeEventListener("timeupdate", deleteInitialElements, true);
+        deletePreloader();
+        //Видео-запись начала проигрываться;
+        if (!isPlaying) isPlaying = true;
+        //Вызов запланированных callback;
+        if (callbacks.length) {
+            for (var counter = 0; counter < callbacks.length; counter++) {
+                callbacks[counter]();
+            }
+        }
     };
     var customizePlayer = function() {
         "use strict";
         target.loop = false;
+        target.controls = false;
     };
     this.handleEvent = function(event) {
         "use strict";
@@ -320,6 +340,10 @@ function VideoPlayer() {
                 background.parentNode.removeChild(background);
                 target.muted = false;
                 activateVolumeButtons();
+            }
+            if (interval) {
+                window.clearInterval(interval);
+                interval = 0;
             }
         }
     };
