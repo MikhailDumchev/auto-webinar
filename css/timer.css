@@ -1,0 +1,72 @@
+.timer-background {
+    display: table;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(21, 26, 50, 0.8);
+}
+.timer {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+.timer h2 {
+    font-family: "Arial";
+    color: rgb(255, 255, 255);
+    margin: 0px auto 20px;
+    line-height: 130%;
+}
+.timer-main-part {
+    display: inline-table;
+    vertical-align: middle;
+}
+.cell {
+    display: table-cell;
+    vertical-align: middle;
+}
+.cell span {
+    display: block;
+    padding: 15px 15px 0px;
+    font-family: "Arial";
+    color: rgb(255, 255, 255);
+    line-height: 130%;
+}
+.cell:after {
+    font-family: "Arial";
+    display: block;
+    line-height: 130%;
+    color: rgb(255, 255, 255);
+}
+.days:after {
+    content: "Дней";
+}
+.hours:after {
+    content: "Часов";
+}
+.minutes:after {
+    content: "Минут";
+}
+.seconds:after {
+    content: "Секунд";
+}
+@media screen and (min-device-width: 721px) {
+    .timer h2 {
+        font-size: 28px;
+    }
+    .cell span {
+        font-size: 60px;
+    }
+    .cell:after {
+        font-size: 16px;
+    }
+}
+@media screen and (max-device-width: 720px) {
+    .timer h2 {
+        font-size: 14px;
+    }
+    .cell span {
+        font-size: 35px;
+    }
+    .cell:after {
+        font-size: 14px;
+    }
+}
