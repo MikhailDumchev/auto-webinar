@@ -1,8 +1,23 @@
 old-versions
 js/old-versions
 js/old-versions-1
+js/old-versions-2
+js/old-versions-3
+js/app.js
+js/main.js
+js/jquery.cookie.js
+js/jquery-3.1.0.min.js
+js/diagram-creator.js
 css/old-versions-1
 comments-creator/test (do not remove).json
 comments-creator/data.json
 js/all.js
 js/all-m.js
+img
+fonts
+ss
+version-1
+css/bootstrap.min.css
+css/main.css
+css/normalize.css
+js/HC
